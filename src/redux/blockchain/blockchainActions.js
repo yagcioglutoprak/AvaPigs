@@ -40,7 +40,16 @@ export const connect = () => {
         Accept: "application/json",
       },
     });
+    const ApprovalAbiResponse = await fetch("/config/ApprovalAbi.json", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    const wavaxAbi = await ApprovalAbiResponse.json();
+    console.log(wavaxAbi)
     const abi = await abiResponse.json();
+    console.log(abi)
     const configResponse = await fetch("/config/config.json", {
       headers: {
         "Content-Type": "application/json",
@@ -65,11 +74,16 @@ export const connect = () => {
             abi,
             CONFIG.CONTRACT_ADDRESS
           );
+          const ApproveContractObject = new Web3EthContract(
+            wavaxAbi,
+            '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7'
+          );
           dispatch(
             connectSuccess({
               account: accounts[0],
               smartContract: SmartContractObj,
               web3: web3,
+              approveContract: ApproveContractObject
             })
           );
           // Add listeners start
