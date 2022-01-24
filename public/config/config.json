@@ -6,8 +6,8 @@
     "SYMBOL": "AVAX",
     "ID": 43114
   },
-  "NFT_NAME": "The Stripes NFT",
-  "SYMBOL": "TSNFT",
+  "NFT_NAME": "AvaPigs",
+  "SYMBOL": "PIGS",
   "MAX_SUPPLY": 20000,
   "WEI_COST": null,
   "DISPLAY_COST": 0,
