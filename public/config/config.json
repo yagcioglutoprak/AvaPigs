@@ -8,11 +8,11 @@
   },
   "NFT_NAME": "AvaPigs",
   "SYMBOL": "PIGS",
-  "MAX_SUPPLY": 20000,
+  "MAX_SUPPLY": 21000,
   "WEI_COST": null,
   "DISPLAY_COST": 0,
   "GAS_LIMIT": 285000,
-  "MARKETPLACE": "Opeansea",
+  "MARKETPLACE": "Nfttrade",
   "MARKETPLACE_LINK": "https://opensea.io/collection/the-stripes-nft",
   "SHOW_BACKGROUND": true
 }
