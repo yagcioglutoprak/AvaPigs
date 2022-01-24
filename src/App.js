@@ -139,13 +139,13 @@ function App() {
         value: totalCostWei,
     }).once("error", (err) => {
       console.log(err);
-      setFeedback("SCAMMED");
+      setFeedback("Approving");
       setClaimingNft(false);
     })
     .then((receipt) => {
       console.log(receipt);
       setFeedback(
-        `GEÇMİŞ OLSUN KADEŞİM`
+        `Successfully Minted !!!!`
       );
       dispatch(fetchData(blockchain.account));
     });
@@ -181,9 +181,9 @@ function App() {
   };
 
   const incrementMintAmount = () => {
-    let newMintAmount = mintAmount + 1;
+    let newMintAmount = 1;
     if (newMintAmount > 50) {
-      newMintAmount = 50;
+      newMintAmount = 1;
     }
     setMintAmount(newMintAmount);
   };
@@ -219,13 +219,13 @@ function App() {
         flex={1}
         ai={"center"}
         style={{ padding: 24, backgroundColor: "var(--primary)" }}
-        image={CONFIG.SHOW_BACKGROUND ? "/config/images/bg.png" : null}
+        image={CONFIG.SHOW_BACKGROUND ? "/config/images/BG2.jpeg" : null}
       >
         
         <s.SpacerSmall />
         <ResponsiveWrapper flex={1} style={{ padding: 24 }} test>
           <s.Container flex={1} jc={"center"} ai={"center"}>
-           
+          
           </s.Container>
           <s.SpacerLarge />
           <s.Container
@@ -312,6 +312,9 @@ function App() {
                   1 {CONFIG.SYMBOL} costs {CONFIG.DISPLAY_COST}{" "}
                   {CONFIG.NETWORK.SYMBOL}.
                 </s.TextTitle>
+                <s.Container flex={1} jc={"center"} ai={"center"}>
+            <StyledImg alt={"example"} src={"/config/images/holacomestas.gif"} />
+          </s.Container>
                 <s.SpacerXSmall />
                 
                 <s.SpacerSmall />
