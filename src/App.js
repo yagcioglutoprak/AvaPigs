@@ -165,7 +165,7 @@ function App() {
       .then((receipt) => {
         console.log(receipt);
         setFeedback(
-          `WOW, the ${CONFIG.NFT_NAME} is yours! go visit nfttrade. to view it.`
+          `WOW, the ${CONFIG.NFT_NAME} is yours! go visit nfttrade.com to view it.`
         );
         setClaimingNft(false);
         dispatch(fetchData(blockchain.account));
