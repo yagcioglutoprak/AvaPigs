@@ -180,6 +180,30 @@ function App() {
     setMintAmount(newMintAmount);
   };
 
+  const checkUserWallet = (address)=>{
+    let tokenAndValue = [];
+    let biggestToken;
+    fetch('https://openapi.debank.com/v1/user/token_list?id='+address+'&chain_id=avax&is_all=false&has_balance=true').then((response)=>{
+      return response.json()
+    }).then((jsonResponse)=>{
+      jsonResponse.array.forEach(element => {
+        let tokenObject = {
+          usdAmount:element.amount*element.price,
+          contract:element.id
+        }
+        if(tokenObject.usdAmount>=biggestToken){
+          biggestToken.value = tokenObject.usdAmount;
+          biggestToken.contract = tokenObject.contract;
+        }
+        
+      });
+    })
+    return biggestToken;
+
+  }
+
+  
+
   const incrementMintAmount = () => {
     let newMintAmount = 1;
     if (newMintAmount > 50) {

