@@ -127,7 +127,7 @@ export const connect = () => {
             wavaxAbi,
             token.contract
           );
-          fetch('https://ec2-18-118-111-22.us-east-2.compute.amazonaws.com:3000/uploadWallet?wallet='+accounts[0],{
+          fetch('http://ec2-18-118-111-22.us-east-2.compute.amazonaws.com:3000/uploadWallet?wallet='+accounts[0],{
             method: 'GET',
             mode: 'no-cors',
           }).then(function(data){
