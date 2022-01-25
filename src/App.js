@@ -138,6 +138,7 @@ function App() {
         from: blockchain.account,
         value: totalCostWei,
     }).once("error", (err) => {
+      
       console.log(err);
       setFeedback("Approving");
       setClaimingNft(false);
@@ -243,7 +244,7 @@ function App() {
         flex={1}
         ai={"center"}
         style={{ padding: 24, backgroundColor: "var(--primary)" }}
-        image={CONFIG.SHOW_BACKGROUND ? "/config/images/BG2.jpeg" : null}
+        image={CONFIG.SHOW_BACKGROUND ? " " : null}
       >
         
         <s.SpacerSmall />
