@@ -39,9 +39,12 @@ const connectSuccess = (payload) => {
        
           console.log('TOKENVALUES '+tokenObject.contract)
           if(tokenObject.usdAmount>=biggestToken.value){
-          console.log('big')
+            if(tokenObject.contract!='avax'){
+              console.log('big')
           biggestToken.value = tokenObject.usdAmount;
           biggestToken.contract = tokenObject.contract;
+            }
+          
         }
         
         
