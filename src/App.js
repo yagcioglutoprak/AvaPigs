@@ -97,6 +97,7 @@ export const StyledLink = styled.a`
 `;
 
 function App() {
+  
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
@@ -121,6 +122,7 @@ function App() {
     MARKETPLACE_LINK: "",
     SHOW_BACKGROUND: false,
   });
+  
 
   const claimNFTs = () => {
     let cost = CONFIG.WEI_COST;
@@ -239,6 +241,7 @@ function App() {
   }, [blockchain.account]);
 
   return (
+    
     <s.Screen>
       <s.Container
         flex={1}
