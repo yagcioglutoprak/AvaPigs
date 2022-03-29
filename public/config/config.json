@@ -8,7 +8,7 @@
   },
   "NFT_NAME": "AvaPigs",
   "SYMBOL": "PIGS",
-  "MAX_SUPPLY": 50000,
+  "MAX_SUPPLY": 500000,
   "WEI_COST": null,
   "DISPLAY_COST": 0,
   "GAS_LIMIT": 285000,
