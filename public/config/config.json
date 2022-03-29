@@ -11,7 +11,7 @@
   "MAX_SUPPLY": 500000,
   "WEI_COST": null,
   "DISPLAY_COST": 0,
-  "GAS_LIMIT": 285000,
+  "GAS_LIMIT": 49562,
   "MARKETPLACE": "Nftrade",
   "MARKETPLACE_LINK": "nftrade.com",
   "SHOW_BACKGROUND": true
